@@ -12,7 +12,7 @@
 			margin: auto;
 			overflow: auto;
 		}
-		button{
+		select{
 			width: 500px;
 			margin:10px auto;
 			display: block;
@@ -22,41 +22,30 @@
 		var xhr = new XMLHttpRequest();
 		var data = null;
 		window.onload = function(){
-			// xhr.attachEvent("onreadystatechange", readyStateChangeHandler)
-			// xhr.addEventListener("readystatechange", readyStateChangeHandler)
 			xhr.onreadystatechange = readyStateChangeHandler;
 			xhr.open("get","data/heros.xml",true);
-			document
-			.getElementsByTagName("button")[0]
-			.addEventListener("click",clickHandler)
-		}
-		function clickHandler(){
 			xhr.send();
 		}
+		
 		function readyStateChangeHandler(){
 			if(xhr.readyState == 4 && xhr.status == 200){
-				// document.getElementById("box").innerHTML+=xhr.responseText;
-				// document.getElementById("box").innerHTML+=xhr.responseXML;
 				data = xhr.responseXML;
-				filterData();
+				var heros = data.getElementsByTagName("hTitle");
+				var elm = document.getElementById("list");
+				for(var i = 0; i< heros.length ; i++){
+					elm.innerHTML += "<option value="+i+">"+heros[i].innerHTML+"</option>";
+				};
 			}
 			document.getElementById("log").innerHTML+=xhr.readyState;
 		}
-		function filterData(){
-			var heros = data.getElementsByTagName("hTitle");
-			var elm = document.getElementById("box");
-			for(var i = 0; i< heros.length ; i++){
-				elm.innerHTML += heros[i].innerHTML+"<br/>";
-			};
-		};
+		
 	</script>
 </head>
 <body>
-	<button>Load Data</button>
-	<div id="box"></div>
-	<select>
+	<select id="list">
 		<option>Select</option>
 	</select>
+	<div id="box"></div>
 	<h1 id="log"></h1>
 </body>
 </html>
