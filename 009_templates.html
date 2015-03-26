@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style>
+		.box{
+			width: 200px;
+			height: 450px;
+			border: 1px solid  gray;
+			background-color: silver;
+			margin: 5px;
+			float: left;
+		}
+		.box h1, h2{
+			margin: 0px;
+		}
+		.box img{
+			width: 100%
+		}
+		.hd{
+			background-color: #F9F6DE;
+			margin: 10px;
+			height: 160px;
+			overflow: auto;
+			text-align: justify;
+			font-family: arial;
+			font-size: 13px;
+		}
+		select{
+			width: 200px;
+			margin:10px auto;
+			display: block;
+		}
+	</style>
+	<script>
+		var xhr = new XMLHttpRequest();
+		var data = null;
+		window.onload = function(){
+			xhr.onreadystatechange = readyStateChangeHandler;
+			xhr.open("get","data/heros.xml",true);
+			xhr.send();
+		}
+		
+		function readyStateChangeHandler(){
+			if(xhr.readyState == 4 && xhr.status == 200){
+				data = xhr.responseXML;
+				var heros = data.getElementsByTagName("hTitle");
+				for(var i = 0; i< heros.length ; i++){
+					var ht = data.getElementsByTagName("hTitle")[i].innerHTML;
+					var hp = data.getElementsByTagName("phone")[i].innerHTML;
+					var hi = data.getElementsByTagName("photo")[i].innerHTML;
+					var hd = data.getElementsByTagName("hDetails")[i].innerHTML;
+					document.getElementsByTagName("body")[0].innerHTML += "<div class='box'><h1>"+ht+"</h1><h2>Phone : <span>"+hp+"</span></h2><img src='"+hi+"' /><div class='hd'>"+hd+"</div></div>"
+				};
+				elm.addEventListener("change", changeHandler)
+			}
+			document.getElementById("log").innerHTML+=xhr.readyState;
+		}
+		
+		function changeHandler(event){
+			// alert(event.target.value);
+			document.getElementById("ht").innerHTML = data.getElementsByTagName("hTitle")[event.target.value].innerHTML;
+			document.getElementById("hp").innerHTML = data.getElementsByTagName("phone")[event.target.value].innerHTML;
+			document.getElementById("hi").src = data.getElementsByTagName("photo")[event.target.value].innerHTML;
+			document.getElementById("hd").innerHTML = data.getElementsByTagName("hDetails")[event.target.value].innerHTML;
+		}
+		
+	</script>
+</head>
+<body>
+	<!-- <div class="box">
+		<h1>Superman</h1>
+		<h2>Phone : <span>123456789</span></h2>
+		<img src="images/superman.jpg" />
+		<div class="hd">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde quasi dolores repudiandae dicta tenetur beatae tempora! Iusto consequuntur nulla perferendis nisi sint magni ducimus libero iste totam dolore beatae provident.
+		</div>
+	</div> -->
+	<h1 id="log"></h1>
+</body>
+</html>
