@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script>
+        window.onload = function (){
+        	var count = document.getElementsByTagName("button").length;
+        	for(var i = 0; i < count; i++){
+        		
+        	if(window.addEventListener){
+        	document.getElementsByTagName("button")[i].addEventListener("click", clickFun);
+        	}else{
+        	document.getElementsByTagName("button")[i].attachEvent("onclick", clickFunIE);
+        	}
+        	
+        	}
+        };
+        function clickFun(event){ 
+        	document.getElementsByTagName("body")[0].removeChild(event.target)
+        	// alert("you clicked "+event.target.textContent);
+        }
+        function clickFunIE(){
+        	var event = window.event;
+        	alert("you clicked "+event.srcElement.innerHTML);
+        }
+       
+     </script>
+</head>
+<body>
+	<button>Button 1</button>
+	<button>Button 2</button>
+	<button>Button 3</button>
+	<button>Button 4</button>
+</body>
+</html>

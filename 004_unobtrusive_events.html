@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style>
+		#box{
+			width: 800px;
+			height: 500px;
+			background-color: silver;
+			margin: auto;
+		}
+		#box div{
+			width: 50px;
+			height: 50px;
+			background-color: orange;
+			margin: 5px;
+			float: left;
+		}
+	</style>
+	<script>
+        window.onload = function (){
+        	if(window.addEventListener){
+        	document.getElementById("btn1").addEventListener("click", clickFun);
+        	document.getElementById("btn2").addEventListener("click", clickFun);
+        	document.getElementById("btn3").addEventListener("click", clickFun);
+        	document.getElementById("btn4").addEventListener("click", clickFun);
+        	}else{
+        	document.getElementById("btn1").attachEvent("onclick", clickFun);
+        	document.getElementById("btn2").attachEvent("onclick", clickFun);
+        	document.getElementById("btn3").attachEvent("onclick", clickFun);
+        	document.getElementById("btn4").attachEvent("onclick", clickFun);
+        	}
+        };
+        function clickFun(){
+        	alert("you clicked ");
+        }
+       
+     </script>
+</head>
+<body>
+	<button id="btn1">Button 1</button>
+	<button id="btn2">Button 2</button>
+	<button id="btn3">Button 3</button>
+	<button id="btn4">Button 4</button>
+</body>
+</html>

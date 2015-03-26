@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<style>
+		#container{
+			width: 600px;
+			height: 400px;
+			border: 1px solid gray;
+			background-color: silver;
+		}
+		.box{
+			width: 50px;
+			height: 50px;
+			background-color: orange;
+			margin: 5px;
+			float: left;
+		}
+	</style>
+	<script>
+	/*
+	 * 
+		window.onload = function() {
+			document.getElementById("boxPlus").addEventListener("click", addBox)
+			document.getElementById("boxMinus").addEventListener("click", removeBox)
+		}
+		function addBox() {
+			var elm = document.createElement("div");
+			elm.setAttribute("class", "box");
+			document.getElementById("container").appendChild(elm);
+		}
+		
+		function removeBox() {
+			var elm = document.getElementById("container").lastChild;
+			if (elm) {
+				document.getElementById("container").removeChild(elm);
+			}
+		}
+
+	 */
+	
+	/*
+	 * 
+	window.onload = function() {
+			document.getElementById("boxPlus").addEventListener("click", above.add)
+			document.getElementById("boxMinus").addEventListener("click", above.remove)
+		}
+	var Above = function(){};
+	// alert(typeof Above);
+	Above.prototype.add = function(){
+			var elm = document.createElement("div");
+			elm.setAttribute("class", "box");
+			document.getElementById("container").appendChild(elm);
+	}
+	Above.prototype.remove = function(){
+			var elm = document.getElementById("container").lastChild;
+			if (elm) {
+				document.getElementById("container").removeChild(elm);
+			}
+	};
+	var above = new Above();
+	
+	 */
+	
+/*
+ * 
+	window.onload = function() {
+			document.getElementById("boxPlus").addEventListener("click", above.add)
+			document.getElementById("boxMinus").addEventListener("click", above.remove)
+		}
+	var Above = function(){};
+
+	Above.prototype = {
+		add : function(){
+			var elm = document.createElement("div");
+			elm.setAttribute("class", "box");
+			document.getElementById("container").appendChild(elm);
+		},
+		remove : function(){
+			var elm = document.getElementById("container").lastChild;
+			if (elm) {
+				document.getElementById("container").removeChild(elm);
+			}
+		}
+	}
+	var above = new Above();
+ */
+	
+	/*
+	 * 
+	Function.prototype.addMe = function(funName, fn){
+		this.prototype[funName] = fn
+	};
+	window.onload = function() {
+			document.getElementById("boxPlus").addEventListener("click", above.add)
+			document.getElementById("boxMinus").addEventListener("click", above.remove)
+		}
+	var Above = function(){};
+	
+	Above.addMe("add", function(){
+		var elm = document.createElement("div");
+			elm.setAttribute("class", "box");
+			document.getElementById("container").appendChild(elm);
+	})
+	Above.addMe("remove",function(){
+		var elm = document.getElementById("container").lastChild;
+			if (elm) {
+				document.getElementById("container").removeChild(elm);
+			}
+	})
+	var above = new Above();
+	
+	 */
+	
+	/*
+	 * 
+	 */
+	Function.prototype.addMe = function(funName, fn){
+		this.prototype[funName] = fn;
+		return this
+	};
+	window.onload = function() {
+			document.getElementById("boxPlus").addEventListener("click", above.add)
+			document.getElementById("boxMinus").addEventListener("click", above.remove)
+		}
+	var Above = function(){};
+	
+	Above
+	.addMe("add", function(){
+		var elm = document.createElement("div");
+			elm.setAttribute("class", "box");
+			document.getElementById("container").appendChild(elm);
+	})
+	.addMe("remove",function(){
+		var elm = document.getElementById("container").lastChild;
+			if (elm) {
+				document.getElementById("container").removeChild(elm);
+			}
+	})
+	var above = new Above();
+	
+	</script>
+</head>
+<body>
+	<button id="boxPlus">Add Box</button>
+	<button id="boxMinus">Remove Box</button>
+	<div id="container"></div>
+</body>
+</html>
