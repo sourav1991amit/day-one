@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+	<script>
+		var xhr = new XMLHttpRequest();
+		var data = null;
+		window.onload = function(){
+			xhr.onreadystatechange = readyStateChangeHandler;
+			xhr.open("get","data/heros.json",true);
+			xhr.send();
+		}
+		
+		function readyStateChangeHandler(){
+			// JSON.parse();
+			// JSON.stringify();
+			
+			if(xhr.readyState == 4 && xhr.status == 200){
+				document.getElementById("boxer").innerHTML = JSON.parse(xhr.responseText).hero[0].hTitle;
+			}
+			document.getElementById("log").innerHTML+=xhr.readyState;
+		}
+
+	</script>
+</head>
+<body>
+	<div id="boxer"></div>
+	<h1 id="log"></h1>
+</body>
+</html>
