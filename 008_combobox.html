@@ -17,7 +17,7 @@
 		#box img{
 			width: 100%
 		}
-		#heroData{
+		#hd{
 			background-color: #F9F6DE;
 			margin: 10px;
 			height: 160px;
@@ -49,8 +49,17 @@
 				for(var i = 0; i< heros.length ; i++){
 					elm.innerHTML += "<option value="+i+">"+heros[i].innerHTML+"</option>";
 				};
+				elm.addEventListener("change", changeHandler)
 			}
 			document.getElementById("log").innerHTML+=xhr.readyState;
+		}
+		
+		function changeHandler(event){
+			// alert(event.target.value);
+			document.getElementById("ht").innerHTML = data.getElementsByTagName("hTitle")[event.target.value].innerHTML;
+			document.getElementById("hp").innerHTML = data.getElementsByTagName("phone")[event.target.value].innerHTML;
+			document.getElementById("hi").src = data.getElementsByTagName("photo")[event.target.value].innerHTML;
+			document.getElementById("hd").innerHTML = data.getElementsByTagName("hDetails")[event.target.value].innerHTML;
 		}
 		
 	</script>
@@ -60,10 +69,10 @@
 		<option>Select</option>
 	</select>
 	<div id="box">
-		<h1>Superman</h1>
-		<h2>Phone : <span>123456789</span></h2>
-		<img src="images/superman.jpg" />
-		<div id="heroData">
+		<h1 id="ht">Superman</h1>
+		<h2>Phone : <span id="hp">123456789</span></h2>
+		<img id="hi" src="images/superman.jpg" />
+		<div id="hd">
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde quasi dolores repudiandae dicta tenetur beatae tempora! Iusto consequuntur nulla perferendis nisi sint magni ducimus libero iste totam dolore beatae provident.
 		</div>
 	</div>
