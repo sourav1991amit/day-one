@@ -3,13 +3,13 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Document</title>
-	
-	<script type="above/template" id="temp">
+	<script src="lib/mustache.js"></script>
+	<script type="above/mustache-template" id="temp">
 		<div class='box'>
-			<h1>{{ht}}</h1>
-			<h2>Phone : <span>{{hp}}</span></h2>
-			<img src='{{hi}}' />
-			<div class='hd'>{{hd}}</div>
+			<h1>{{hTitle}}</h1>
+			<h2>Phone : <span>{{phone}}</span></h2>
+			<img src='{{photo}}' />
+			<div class='hd'>{{hDetails}}</div>
 		</div>
 	</script>
 	
@@ -50,37 +50,27 @@
 		window.onload = function(){
 			xhr.onreadystatechange = readyStateChangeHandler;
 			xhr.open("get","data/heros.json",true);
-			xhr.send();
+			
 		}
 		
 		function readyStateChangeHandler(){
-			// JSON.parse();
-			// JSON.stringify();
-			
 			if(xhr.readyState == 4 && xhr.status == 200){
 				var data = JSON.parse(xhr.responseText);
 				for(var i = 0; i < data.hero.length; i++){
-				
-				var ht = data.hero[i].hTitle;
-				var hp = data.hero[i].phone;
-				var hi = data.hero[i].photo;
-				var hd = data.hero[i].hDetails;
-				document.getElementsByTagName("body")[0].innerHTML +=  document
-																	.getElementById("temp")
-																	.innerHTML
-																	.replace("{{ht}}",ht)
-																	.replace("{{hp}}",hp)
-																	.replace("{{hi}}",hi)
-																	.replace("{{hd}}",hd);
+				var temp = document.getElementById("temp").innerHTML;
+				document.getElementsByTagName("body")[0].innerHTML += Mustache.render(temp, data.hero[i]);
 				}
 			}
 			document.getElementById("log").innerHTML+=xhr.readyState;
 		}
-
+		function getData(){
+			xhr.send();
+		}
 	</script>
 </head>
 <body>
 	<div id="boxer"></div>
 	<h1 id="log"></h1>
+	<button onclick="getData()">get data</button>
 </body>
 </html>
