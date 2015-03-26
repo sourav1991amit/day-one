@@ -5,15 +5,29 @@
 	<title>Document</title>
 	<style>
 		#box{
-			width: 500px;
-			height: 250px;
+			width: 200px;
+			height: 450px;
 			border: 1px solid  gray;
 			background-color: silver;
 			margin: auto;
+		}
+		#box h1, h2{
+			margin: 0px;
+		}
+		#box img{
+			width: 100%
+		}
+		#heroData{
+			background-color: #F9F6DE;
+			margin: 10px;
+			height: 160px;
 			overflow: auto;
+			text-align: justify;
+			font-family: arial;
+			font-size: 13px;
 		}
 		select{
-			width: 500px;
+			width: 200px;
 			margin:10px auto;
 			display: block;
 		}
@@ -45,7 +59,14 @@
 	<select id="list">
 		<option>Select</option>
 	</select>
-	<div id="box"></div>
+	<div id="box">
+		<h1>Superman</h1>
+		<h2>Phone : <span>123456789</span></h2>
+		<img src="images/superman.jpg" />
+		<div id="heroData">
+			Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde quasi dolores repudiandae dicta tenetur beatae tempora! Iusto consequuntur nulla perferendis nisi sint magni ducimus libero iste totam dolore beatae provident.
+		</div>
+	</div>
 	<h1 id="log"></h1>
 </body>
 </html>
