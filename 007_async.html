@@ -3,18 +3,43 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Document</title>
+	<style>
+		#box{
+			width: 500px;
+			height: 250px;
+			border: 1px solid  gray;
+			background-color: silver;
+			margin: auto;
+		}
+		button{
+			width: 500px;
+			margin:10px auto;
+			display: block;
+		}
+	</style>
 	<script>
+		var xhr = new XMLHttpRequest()
 		window.onload = function(){
-			document.getElementsByTagName("button")[0].addEventListener("click",clickHandler)
+			// xhr.attachEvent("onreadystatechange", readyStateChangeHandler)
+			// xhr.addEventListener("readystatechange", readyStateChangeHandler)
+			xhr.onreadystatechange = readyStateChangeHandler;
+			xhr.open("get","data/data.txt",false);
+			document
+			.getElementsByTagName("button")[0]
+			.addEventListener("click",clickHandler)
 		}
 		function clickHandler(){
-			// stub
-		
+			xhr.send();
+		}
+		function readyStateChangeHandler(){
+			document.getElementById("log").innerHTML+=xhr.readyState;
+			document.getElementById("box").innerHTML+=xhr.responseText;
 		}
 	</script>
 </head>
 <body>
 	<button>Load Data</button>
 	<div id="box"></div>
+	<h1 id="log"></h1>
 </body>
 </html>
