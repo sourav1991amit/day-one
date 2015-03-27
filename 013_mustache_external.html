@@ -4,16 +4,7 @@
 	<meta charset="UTF-8" />
 	<title>Document</title>
 	<script src="lib/mustache.js"></script>
-	
-	<script type="above/mustache-template" id="temp">
-		<div class='box'>
-			<h1>{{hTitle}}</h1>
-			<h2>Phone : <span>{{phone}}</span></h2>
-			<img src='{{photo}}' />
-			<div class='hd'>{{hDetails}}</div>
-		</div>
-	</script>
-	
+
 	<style>
 		.box{
 			width: 200px;
@@ -47,17 +38,31 @@
 	
 	<script>
 		var xhr = new XMLHttpRequest();
+		var xhr_temp = new XMLHttpRequest();
+		
+		var data = null;
+		var temp = null;
 		window.onload = function(){
 			xhr.onreadystatechange = readyStateChangeHandler;
 			xhr.open("get","data/heros.json",true);
 			
+			xhr_temp.onreadystatechange = tempLoadHandler;
+			xhr_temp.open("get","temp/temp.html",true);
+			xhr_temp.send();
+			
 		}
-		
+		function tempLoadHandler(){
+			if(xhr_temp.readyState == 4 && xhr_temp.status == 200){
+				console.log(xhr_temp.responseText);
+				console.log(xhr_temp.responseXML); // responseXML did not work
+				temp = xhr_temp.responseText;
+			}
+		};
 		function readyStateChangeHandler(){
-			if(xhr.readyState == 4 && xhr.status == 200){
+			if( xhr.status == 200 && xhr.readyState == 4 ){
 				var data = JSON.parse(xhr.responseText);
 				for(var i = 0; i < data.hero.length; i++){
-				var temp = document.getElementById("temp").innerHTML;
+				// var temp = document.getElementById("temp").innerHTML;
 				document.getElementsByTagName("body")[0].innerHTML += Mustache.render(temp, data.hero[i]);
 				}
 			}
