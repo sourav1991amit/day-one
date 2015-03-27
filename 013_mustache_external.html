@@ -49,6 +49,7 @@
 			xhr_temp.onreadystatechange = tempLoadHandler;
 			xhr_temp.open("get","temp/temp.html",true);
 			xhr_temp.send();
+			document.getElementById("btn").addEventListener("click",getData)
 			
 		}
 		function tempLoadHandler(){
@@ -76,6 +77,6 @@
 <body>
 	<div id="boxer"></div>
 	<h1 id="log"></h1>
-	<button onclick="getData()">get data</button>
+	<button id="btn">get data</button>
 </body>
 </html>
